@@ -1,5 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
-
+import { useState, useEffect } from "react";
 export const PeopleCard = ({
   name,
   birth,
@@ -9,9 +8,9 @@ export const PeopleCard = ({
   vehicles,
 }) => {
   const [peopleFilm, setPeopleFilm] = useState([]);
-  const [peopleVehicles,setPeopleVehicles] = useState([]);
-  const [peopleStarships,setPeopleStarships] = useState([]);
-  const fetchAll = async (data,func) => {
+  const [peopleVehicles, setPeopleVehicles] = useState([]);
+  const [peopleStarships, setPeopleStarships] = useState([]);
+  const fetchAll = async (data, func) => {
     const results = await Promise.all(
       data.map((url) => fetch(url).then((r) => r.json()))
     );
@@ -19,10 +18,10 @@ export const PeopleCard = ({
   };
 
   useEffect(() => {
-    fetchAll(films,setPeopleFilm);
-    fetchAll(starships,setPeopleStarships);
-    fetchAll(vehicles,setPeopleVehicles)
-  }, [films,starships,vehicles]);
+    fetchAll(films, setPeopleFilm);
+    fetchAll(starships, setPeopleStarships);
+    fetchAll(vehicles, setPeopleVehicles);
+  }, [films, starships, vehicles]);
 
   return (
     <div className="w-4/5 p-4 bg-white m-auto rounded-xl drop-shadow-lg flex flex-col gap-2">
@@ -40,44 +39,50 @@ export const PeopleCard = ({
           <p className="text-black text-2xl font-bold">{gender || ""}</p>
         </div>
       </div>
-      <div className="bg-purple-100 bg-opacity-30 rounded-xl flex flex-wrap p-4 gap-y-4 items-center">
+      <div className="bg-purple-100 bg-opacity-30 rounded-xl flex p-4 items-center">
         <h2 className="font-semibold text-xl mr-9 text-black">Films: </h2>
-        {peopleFilm &&
-          peopleFilm?.length > 0 &&
-          peopleFilm.map((e, i) => (
-            <button
-              key={i}
-              className="bg-white ml-4 hover:bg-gray-100 text-purple-600 font-semibold py-1 px-4 border border-purple-600 rounded shadow"
-            >
-              {e.title}
-            </button>
-          ))}
+        <div className="flex flex-wrap gap-y-2">
+          {peopleFilm &&
+            peopleFilm?.length > 0 &&
+            peopleFilm.map((e, i) => (
+              <button
+                key={i}
+                className="bg-white ml-4 hover:bg-gray-100 text-purple-600 font-semibold py-1 px-4 border border-purple-600 rounded shadow"
+              >
+                {e.title}
+              </button>
+            ))}
+        </div>
       </div>
-      <div className="bg-purple-100 bg-opacity-30 rounded-xl flex flex-wrap p-4 gap-y-4 items-center">
+      <div className="bg-purple-100 bg-opacity-30 rounded-xl flex p-4 items-center">
         <h2 className="font-semibold text-xl text-black">Starships: </h2>
-        {peopleStarships &&
-          peopleStarships?.length > 0 &&
-          peopleStarships.map((e, i) => (
-            <button
-              key={i}
-              className="bg-white ml-4 hover:bg-gray-100 text-purple-600 font-semibold py-1 px-4 border border-purple-600 rounded shadow"
-            >
-              {e.name}
-            </button>
-          ))}
+        <div className="flex flex-wrap gap-y-2">
+          {peopleStarships &&
+            peopleStarships?.length > 0 &&
+            peopleStarships.map((e, i) => (
+              <button
+                key={i}
+                className="bg-white ml-4 hover:bg-gray-100 text-purple-600 font-semibold py-1 px-4 border border-purple-600 rounded shadow"
+              >
+                {e.name}
+              </button>
+            ))}
+        </div>
       </div>
-      <div className="bg-purple-100 bg-opacity-30 rounded-xl flex flex-wrap p-4 gap-y-4 items-center">
+      <div className="bg-purple-100 bg-opacity-30 rounded-xl flex p-4 items-center">
         <h2 className="font-semibold text-xl mr-2 text-black">Vehicles: </h2>
-        {peopleVehicles &&
-          peopleVehicles.length > 0 &&
-          peopleVehicles.map((e, i) => (
-            <button
-              key={i}
-              className="bg-white ml-4 hover:bg-gray-100 text-purple-600 font-semibold py-1 px-4 border border-purple-600 rounded shadow"
-            >
-              {e.name}
-            </button>
-          ))}
+        <div className="flex flex-wrap gap-y-2">
+          {peopleVehicles &&
+            peopleVehicles?.length > 0 &&
+            peopleVehicles.map((e, i) => (
+              <button
+                key={i}
+                className="bg-white ml-4 hover:bg-gray-100 text-purple-600 font-semibold py-1 px-4 border border-purple-600 rounded shadow"
+              >
+                {e.name}
+              </button>
+            ))}
+        </div>
       </div>
     </div>
   );
