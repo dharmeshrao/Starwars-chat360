@@ -64,52 +64,64 @@ const PeopleCard = ({
       ) : (
         ""
       )}
-      <div className="bg-purple-100 bg-opacity-30 rounded-xl flex p-4 items-center">
-        <h2 className="font-semibold text-xl mr-9 text-black">Films: </h2>
-        <div className="flex flex-wrap gap-y-2">
-          {peopleFilm &&
-            peopleFilm?.length > 0 &&
-            peopleFilm.map((e, i) => (
-              <button
-                key={i}
-                onClick={() => navigate(`/films/${e.episode_id}`)}
-                className="bg-white ml-4 hover:bg-gray-100 text-purple-600 font-semibold py-1 px-4 border border-purple-600 rounded shadow"
-              >
-                {e.title}
-              </button>
-            ))}
+      {peopleFilm?.length > 0 ? (
+        <div className="bg-purple-100 bg-opacity-30 rounded-xl flex p-4 items-center">
+          <h2 className="font-semibold text-xl mr-9 text-black">Films: </h2>
+          <div className="flex flex-wrap gap-y-2">
+            {peopleFilm &&
+              peopleFilm?.length > 0 &&
+              peopleFilm.map((e, i) => (
+                <button
+                  key={i}
+                  onClick={() => navigate(`/films/${e.episode_id}`)}
+                  className="bg-white ml-4 hover:bg-gray-100 text-purple-600 font-semibold py-1 px-4 border border-purple-600 rounded shadow"
+                >
+                  {e.title}
+                </button>
+              ))}
+          </div>
         </div>
-      </div>
-      <div className="bg-purple-100 bg-opacity-30 rounded-xl flex p-4 items-center">
-        <h2 className="font-semibold text-xl text-black">Starships: </h2>
-        <div className="flex flex-wrap gap-y-2">
-          {peopleStarships &&
-            peopleStarships?.length > 0 &&
-            peopleStarships.map((e, i) => (
-              <button
-                key={i}
-                className="bg-white ml-4 hover:bg-gray-100 text-purple-600 font-semibold py-1 px-4 border border-purple-600 rounded shadow"
-              >
-                {e.name}
-              </button>
-            ))}
+      ) : (
+        ""
+      )}
+      {peopleStarships?.length > 0 ? (
+        <div className="bg-purple-100 bg-opacity-30 rounded-xl flex p-4 items-center">
+          <h2 className="font-semibold text-xl text-black">Starships: </h2>
+          <div className="flex flex-wrap gap-y-2">
+            {peopleStarships &&
+              peopleStarships?.length > 0 &&
+              peopleStarships.map((e, i) => (
+                <button
+                  key={i}
+                  className="bg-white ml-4 hover:bg-gray-100 text-purple-600 font-semibold py-1 px-4 border border-purple-600 rounded shadow"
+                >
+                  {e.name}
+                </button>
+              ))}
+          </div>
         </div>
-      </div>
-      <div className="bg-purple-100 bg-opacity-30 rounded-xl flex p-4 items-center">
-        <h2 className="font-semibold text-xl mr-2 text-black">Vehicles: </h2>
-        <div className="flex flex-wrap gap-y-2">
-          {peopleVehicles &&
-            peopleVehicles?.length > 0 &&
-            peopleVehicles.map((e, i) => (
-              <button
-                key={i}
-                className="bg-white ml-4 hover:bg-gray-100 text-purple-600 font-semibold py-1 px-4 border border-purple-600 rounded shadow"
-              >
-                {e.name}
-              </button>
-            ))}
+      ) : (
+        ""
+      )}
+      {peopleVehicles?.length > 0 ? (
+        <div className="bg-purple-100 bg-opacity-30 rounded-xl flex p-4 items-center">
+          <h2 className="font-semibold text-xl mr-2 text-black">Vehicles: </h2>
+          <div className="flex flex-wrap gap-y-2">
+            {peopleVehicles &&
+              peopleVehicles?.length > 0 &&
+              peopleVehicles.map((e, i) => (
+                <button
+                  key={i}
+                  className="bg-white ml-4 hover:bg-gray-100 text-purple-600 font-semibold py-1 px-4 border border-purple-600 rounded shadow"
+                >
+                  {e.name}
+                </button>
+              ))}
+          </div>
         </div>
-      </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 };
