@@ -1,39 +1,95 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+import PeopleCard from "../../utils/PeopleCard";
+import {
+  addFilmLoading,
+  addFilmError,
+  addFilmSucess,
+} from "../../../redux/films/actiion";
 export const Films = () => {
+  const params = useParams();
+  const [charList, setCharList] = useState([]);
+  const dispatch = useDispatch();
+  const { loading, data, error } = useSelector((store) => store.film);
+  const fetchAll = async (data, func) => {
+    const results = await Promise.all(
+      data.map((url) => fetch(url).then((r) => r.json()))
+    );
+    func(results);
+  };
+
+  useEffect(async () => {
+    dispatch(addFilmLoading());
+    try {
+      const { data } = await axios.get(
+        `https://swapi.dev/api/films/${params.id}`
+      );
+      fetchAll(data.characters, setCharList);
+      dispatch(addFilmSucess(data));
+    } catch (err) {
+      dispatch(addFilmError());
+    }
+  }, [params?.id, dispatch]);
+  console.log(data);
+  if (loading) return <div>...loading</div>;
+  if (error) return <div>error</div>;
   return (
     <div className="p-6 flex flex-col gap-4">
       <div className="w-4/5 p-4 bg-white m-auto rounded-xl drop-shadow-lg flex flex-col gap-2">
         <div className="flex flex-row justify-between gap-2 bg-purple-100 bg-opacity-30 rounded-xl p-4">
           <div className="w-1/4 text-center">
             <h4 className="text-purple-600 font-semibold text-lg">Title</h4>
-            <p className="text-black text-2xl font-bold">Dharmesh</p>
+            <p className="text-black text-2xl font-bold">{data.title}</p>
           </div>
           <div className="w-1/4 text-center">
             <h4 className="text-purple-600 font-semibold text-lg">Director</h4>
-            <p className="text-black text-2xl font-bold">Dafsa</p>
+            <p className="text-black text-2xl font-bold">{data.director}</p>
           </div>
           <div className="w-1/4 text-center">
             <h4 className="text-purple-600 font-semibold text-lg">Producer</h4>
-            <p className="text-black text-2xl font-bold">Dharmesh</p>
+            <p className="text-black text-2xl font-bold">{data.producer}</p>
           </div>
           <div className="w-1/4 text-center">
             <h4 className="text-purple-600 font-semibold text-lg">
               Release Date
             </h4>
-            <p className="text-black text-2xl font-bold">Dharmesh</p>
+            <p className="text-black text-2xl font-bold">{data.release_date}</p>
           </div>
         </div>
         <div className="bg-purple-100 bg-opacity-30 rounded-xl flex p-4">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorum
-          omnis totam ratione officia pariatur magnam quam maiores, sequi, ab
-          id, consequuntur quibusdam harum aut suscipit reprehenderit sit
-          temporibus accusamus inventore? Quasi esse corrupti expedita eligendi
-          dolor eveniet in quae. Eveniet iste, consectetur sint voluptates eum
-          pariatur, voluptatem deserunt nobis suscipit debitis ratione, impedit
-          id repudiandae laudantium distinctio officiis omnis nesciunt!
+          {data.opening_crawl}
         </div>
       </div>
+      {charList &&
+        charList?.length > 0 &&
+        charList.map((e) => (
+          <PeopleCard
+            key={Math.random()}
+            name={e.name}
+            birth={e.birth_year}
+            gender={e.gender}
+            vehicles={e.vehicles}
+            starships={e.starships}
+            films={e.films}
+            height={e.height}
+            mass={e.mass}
+            hair_color={e.hair_color}
+          />
+        ))}
     </div>
   );
 };
+
+// "name": "Luke Skywalker", 
+// "height": "172", 
+// "mass": "77", 
+// "hair_color": "blond", 
+// "skin_color": "fair", 
+// "eye_color": "blue", 
+// "birth_year": "19BBY", 
+// "gender": "male", 
 
 // title, director, producer, release date, and the name of the characters in the film in a list

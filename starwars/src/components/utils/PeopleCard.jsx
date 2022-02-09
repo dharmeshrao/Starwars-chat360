@@ -7,6 +7,9 @@ const PeopleCard = ({
   films,
   starships,
   vehicles,
+  height,
+  hair_color,
+  mass,
 }) => {
   const [peopleFilm, setPeopleFilm] = useState([]);
   const [peopleVehicles, setPeopleVehicles] = useState([]);
@@ -41,6 +44,26 @@ const PeopleCard = ({
           <p className="text-black text-2xl font-bold">{gender || ""}</p>
         </div>
       </div>
+      {height ? (
+        <div className="flex justify-around text-center p-4 bg-purple-100 bg-opacity-40 rounded-xl">
+          <div className="w-1/3">
+            <h4 className="text-purple-600 font-semibold text-lg">Height</h4>
+            <p className="text-black text-2xl font-bold">{height || ""}</p>
+          </div>
+          <div className="w-1/3">
+            <h4 className="text-purple-600 font-semibold text-lg">Mass</h4>
+            <p className="text-black text-2xl font-bold">{mass || ""}</p>
+          </div>
+          <div className="w-1/3">
+            <h4 className="text-purple-600 font-semibold text-lg">
+              Hair Color
+            </h4>
+            <p className="text-black text-2xl font-bold">{hair_color || ""}</p>
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
       <div className="bg-purple-100 bg-opacity-30 rounded-xl flex p-4 items-center">
         <h2 className="font-semibold text-xl mr-9 text-black">Films: </h2>
         <div className="flex flex-wrap gap-y-2">
@@ -90,4 +113,4 @@ const PeopleCard = ({
     </div>
   );
 };
-export default memo(PeopleCard)
+export default memo(PeopleCard);

@@ -8,7 +8,7 @@ import {
 import PeopleCard from "../../utils/PeopleCard";
 export const PeoplePage = () => {
   const dispatch = useDispatch();
-  const { data } = useSelector((store) => store);
+  const { data } = useSelector((store) => store.people);
   useEffect(() => {
     dispatch(addPeopleLoading());
     try {
