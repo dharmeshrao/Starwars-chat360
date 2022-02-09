@@ -8,7 +8,7 @@ import {
 import PeopleCard from "../../utils/PeopleCard";
 export const PeoplePage = () => {
   const dispatch = useDispatch();
-  const { data, loading } = useSelector((store) => store);
+  const { data } = useSelector((store) => store);
   useEffect(() => {
     dispatch(addPeopleLoading());
     try {
@@ -19,8 +19,7 @@ export const PeoplePage = () => {
       dispatch(addPeopleError());
     }
   }, [dispatch]);
-  console.log(data);
-  if (loading) return <div>...loading</div>;
+  if (data?.length === 0) return <div>...loading</div>;
   return (
     <div className="p-6 flex flex-col gap-4">
       {data &&
