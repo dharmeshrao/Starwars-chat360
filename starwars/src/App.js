@@ -1,10 +1,9 @@
-import { Navbar } from "./components/pages/navbar/Navbar";
-
+import { Routes } from "./components/Routes";
 function App() {
   return (
-<>
-<Navbar/>
-</>
+    <>
+      <Routes />
+    </>
   );
 }
 
