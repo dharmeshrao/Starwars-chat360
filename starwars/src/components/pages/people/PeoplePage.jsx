@@ -5,7 +5,7 @@ import {
   addPeopleError,
   addPeopleSucess,
 } from "../../../redux/people/actions";
-import { PeopleCard } from "../../utils/PeopleCard";
+import PeopleCard from "../../utils/PeopleCard";
 export const PeoplePage = () => {
   const dispatch = useDispatch();
   const { data, loading } = useSelector((store) => store);

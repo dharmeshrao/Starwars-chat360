@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
-export const PeopleCard = ({
+import { useState, useEffect, memo } from "react";
+import { useNavigate } from "react-router-dom";
+const PeopleCard = ({
   name,
   birth,
   gender,
@@ -10,6 +11,7 @@ export const PeopleCard = ({
   const [peopleFilm, setPeopleFilm] = useState([]);
   const [peopleVehicles, setPeopleVehicles] = useState([]);
   const [peopleStarships, setPeopleStarships] = useState([]);
+  const navigate = useNavigate();
   const fetchAll = async (data, func) => {
     const results = await Promise.all(
       data.map((url) => fetch(url).then((r) => r.json()))
@@ -47,6 +49,7 @@ export const PeopleCard = ({
             peopleFilm.map((e, i) => (
               <button
                 key={i}
+                onClick={() => navigate(`/films/${e.episode_id}`)}
                 className="bg-white ml-4 hover:bg-gray-100 text-purple-600 font-semibold py-1 px-4 border border-purple-600 rounded shadow"
               >
                 {e.title}
@@ -87,5 +90,7 @@ export const PeopleCard = ({
     </div>
   );
 };
+
+export default memo(PeopleCard)
 
 // The cards should show these fields:- name, birth_year, gender, films, starships, vehicles. (The films and starships will be only links to two different pages)
