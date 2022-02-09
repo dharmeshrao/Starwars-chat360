@@ -90,7 +90,4 @@ const PeopleCard = ({
     </div>
   );
 };
-
 export default memo(PeopleCard)
-
-// The cards should show these fields:- name, birth_year, gender, films, starships, vehicles. (The films and starships will be only links to two different pages)
