@@ -63,6 +63,7 @@ export const Films = () => {
           {data.opening_crawl}
         </div>
       </div>
+      <h1 className="text-center text-purple-600 font-bold text-2xl">Characters</h1>
       {charList &&
         charList?.length > 0 &&
         charList.map((e) => (
@@ -71,9 +72,6 @@ export const Films = () => {
             name={e.name}
             birth={e.birth_year}
             gender={e.gender}
-            vehicles={e.vehicles}
-            starships={e.starships}
-            films={e.films}
             height={e.height}
             mass={e.mass}
             hair_color={e.hair_color}

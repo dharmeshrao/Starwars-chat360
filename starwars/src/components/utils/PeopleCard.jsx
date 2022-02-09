@@ -27,7 +27,6 @@ const PeopleCard = ({
     fetchAll(starships, setPeopleStarships);
     fetchAll(vehicles, setPeopleVehicles);
   }, [films, starships, vehicles]);
-
   return (
     <div className="w-4/5 p-4 bg-white m-auto rounded-xl drop-shadow-lg flex flex-col gap-2">
       <div className="flex justify-around text-center p-4 bg-purple-100 bg-opacity-40 rounded-xl">
