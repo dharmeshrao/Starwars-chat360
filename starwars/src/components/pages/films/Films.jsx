@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import PeopleCard from "../../utils/PeopleCard";
+import { Circles } from "react-loader-spinner";
 import {
   addFilmLoading,
   addFilmError,
@@ -34,7 +35,12 @@ export const Films = () => {
     }
   }, [params?.id, dispatch]);
   console.log(data);
-  if (loading) return <div>...loading</div>;
+  if (data?.length === 0)
+    return (
+      <div className="w-screen h-screen flex items-center justify-center">
+        <Circles color="lightgray" ariaLabel="loading-indicator" />
+      </div>
+    );
   if (error) return <div>error</div>;
   return (
     <div className="p-6 flex flex-col gap-4">

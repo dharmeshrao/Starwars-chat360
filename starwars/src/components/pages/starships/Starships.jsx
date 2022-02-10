@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect } from "react";
+import { Circles } from "react-loader-spinner"
 import {
   addStarshipsLoading,
   addStarshipsSucess,
@@ -22,7 +23,12 @@ export const Starships = () => {
       dispatch(addStarshipsError());
     }
   }, [params?.id]);
-  console.log(data);
+  if (data?.length === 0)
+  return (
+    <div className="w-screen h-screen flex items-center justify-center">
+      <Circles color="lightgray" ariaLabel="loading-indicator" />
+    </div>
+  );
   return <div className="p-6 flex flex-col gap-4">
             <div className="w-4/5 p-4 bg-white m-auto rounded-xl drop-shadow-lg flex flex-col gap-2">
         <div className="flex flex-row justify-between gap-2 bg-purple-100 bg-opacity-30 rounded-xl p-4">
