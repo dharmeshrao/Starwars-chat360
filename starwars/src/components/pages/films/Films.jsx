@@ -17,8 +17,6 @@ export const Films = () => {
     getFilmsAxios(params?.id).then((res) =>
       fetchAll(res?.data?.characters).then((res) => setCharList(res))
     );
-
-    // console.log(data);
   }, [params?.id, dispatch]);
   if (loading)
     return (
@@ -71,19 +69,23 @@ export const Films = () => {
       <h1 className="text-center text-purple-600 text-sm font-bold sm:text-2xl">
         Characters
       </h1>
-      {charList?.length > 0
-        ? charList.map((e) => (
-            <FilmCard
-             key={Math.random()}
-              name={e.name}
-              hair_color={e.hair_color}
-              birth={e.birth_year}
-              gender={e.gender}
-              height={e.height}
-              mass={e.mass}
-            />
-          ))
-        : ""}
+      {charList?.length > 0 ? (
+        charList.map((e) => (
+          <FilmCard
+            key={Math.random()}
+            name={e.name}
+            hair_color={e.hair_color}
+            birth={e.birth_year}
+            gender={e.gender}
+            height={e.height}
+            mass={e.mass}
+          />
+        ))
+      ) : (
+        <div className="w-screen flex items-center justify-center">
+          <Circles color="lightgray" ariaLabel="loading-indicator" />
+        </div>
+      )}
     </div>
   );
 };
