@@ -111,6 +111,7 @@ const PeopleCard = ({
               peopleVehicles.map((e, i) => (
                 <button
                   key={i}
+                  onClick={() => navigate(`/vehicles/${e?.url?.split("/")[e.url.split("/").length-2]}`)}
                   className="bg-white ml-4 hover:bg-gray-100 text-purple-600 font-semibold py-1 px-4 border border-purple-600 rounded shadow"
                 >
                   {e.name}

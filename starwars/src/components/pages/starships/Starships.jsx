@@ -76,18 +76,3 @@ export const Starships = () => {
         </div>
   </div>
 };
-
-// "name": "X-wing", 
-// "model": "T-65 X-wing", 
-// "manufacturer": "Incom Corporation", 
-// "cost_in_credits": "149999", 
-// "length": "12.5", 
-// "max_atmosphering_speed": "1050", 
-// "crew": "1", 
-// "passengers": "0", 
-// "cargo_capacity": "110", 
-// "consumables": "1 week", 
-// "hyperdrive_rating": "1.0", 
-// "MGLT": "100", 
-// "starship_class": "Starfighter",
-// The cards will show these fields:- name, model, manufacturer, max_atmosphering_speed, passengers, starship_class

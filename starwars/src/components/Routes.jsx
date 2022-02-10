@@ -3,6 +3,7 @@ import { Films } from "./pages/films/Films";
 import { Navbar } from "./pages/navbar/Navbar";
 import { PeoplePage } from "./pages/people/PeoplePage";
 import { Starships } from "./pages/starships/Starships";
+import { Vehicles } from "./pages/vehicles/Vehicles";
 export const Routes = () => {
   return (
     <>
@@ -11,6 +12,7 @@ export const Routes = () => {
         <Route path="/" element={<PeoplePage />} />
         <Route path="/films/:id" element={<Films />} />
         <Route path="/starships/:id" element={<Starships />} />
+        <Route path="/vehicles/:id" element={<Vehicles/>}/>
         <Route path="*" element={<h1>No page found...</h1>} />
       </Main>
     </>
