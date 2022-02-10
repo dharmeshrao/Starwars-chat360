@@ -6,7 +6,7 @@ import {
   addPeopleSucess,
 } from "../../../redux/people/actions";
 import PeopleCard from "../../utils/PeopleCard";
-import { Circles } from "react-loader-spinner"
+import { Circles } from "react-loader-spinner";
 export const PeoplePage = () => {
   const dispatch = useDispatch();
   const { data } = useSelector((store) => store.people);
@@ -20,7 +20,12 @@ export const PeoplePage = () => {
       dispatch(addPeopleError());
     }
   }, [dispatch]);
-  if (data?.length === 0) return <div className="w-screen h-screen flex items-center justify-center"><Circles color="lightgray" ariaLabel="loading-indicator" /></div>
+  if (data?.length === 0)
+    return (
+      <div className="w-screen h-screen flex items-center justify-center">
+        <Circles color="lightgray" ariaLabel="loading-indicator" />
+      </div>
+    );
   return (
     <div className="p-6 flex flex-col gap-4">
       {data &&

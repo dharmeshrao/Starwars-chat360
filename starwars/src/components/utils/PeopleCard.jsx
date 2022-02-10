@@ -21,7 +21,6 @@ const PeopleCard = ({
     );
     func(results);
   };
-
   useEffect(() => {
     fetchAll(films, setPeopleFilm);
     fetchAll(starships, setPeopleStarships);
@@ -72,7 +71,7 @@ const PeopleCard = ({
               peopleFilm.map((e, i) => (
                 <button
                   key={i}
-                  onClick={() => navigate(`/films/${e.episode_id}`)}
+                  onClick={() => navigate(`/films/${e?.url?.split("/")[e.url.split("/").length-2]}`)}
                   className="bg-white ml-4 hover:bg-gray-100 text-purple-600 font-semibold py-1 px-4 border border-purple-600 rounded shadow"
                 >
                   {e.title}
