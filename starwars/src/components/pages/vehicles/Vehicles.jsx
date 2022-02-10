@@ -1,26 +1,13 @@
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import axios from "axios";
-import {
-  addVehiclesLoading,
-  addVehiclesError,
-  addVehiclesSucess,
-} from "../../../redux/vehicles/action";
+import { fetchAllVehicles } from "../../../redux/vehicles/action";
 export const Vehicles = () => {
   const { data } = useSelector((store) => store.vehicles);
   const params = useParams();
   const dispatch = useDispatch();
   useEffect(async () => {
-    dispatch(addVehiclesLoading());
-    try {
-      const { data } = await axios.get(
-        `https://swapi.dev/api/vehicles/${params?.id}`
-      );
-      dispatch(addVehiclesSucess(data));
-    } catch (err) {
-      dispatch(addVehiclesError(err));
-    }
+    fetchAllVehicles(dispatch, params?.id);
   }, [params?.id]);
   return (
     <div className="p-6 flex flex-col gap-4">

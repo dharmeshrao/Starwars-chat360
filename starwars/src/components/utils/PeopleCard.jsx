@@ -1,5 +1,6 @@
 import { useState, useEffect, memo } from "react";
 import { useNavigate } from "react-router-dom";
+import { fetchAll } from "./Axios";
 const PeopleCard = ({
   name,
   birth,
@@ -15,16 +16,14 @@ const PeopleCard = ({
   const [peopleVehicles, setPeopleVehicles] = useState([]);
   const [peopleStarships, setPeopleStarships] = useState([]);
   const navigate = useNavigate();
-  const fetchAll = async (data, func) => {
-    const results = await Promise.all(
-      data.map((url) => fetch(url).then((r) => r.json()))
-    );
-    func(results);
-  };
   useEffect(() => {
-    fetchAll(films, setPeopleFilm);
-    fetchAll(starships, setPeopleStarships);
-    fetchAll(vehicles, setPeopleVehicles);
+    let mount = true;
+    fetchAll(films).then((data)=>{if(mount)setPeopleFilm(data)});
+    fetchAll(starships).then((data)=>{if(mount)setPeopleStarships(data)});
+    fetchAll(vehicles).then((data)=>{if(mount)setPeopleVehicles(data)})
+    return () => {
+      mount = false;
+    };
   }, [films, starships, vehicles]);
   return (
     <div className="w-4/5 p-4 bg-white m-auto rounded-xl drop-shadow-lg flex flex-col gap-2">
@@ -71,7 +70,13 @@ const PeopleCard = ({
               peopleFilm.map((e, i) => (
                 <button
                   key={i}
-                  onClick={() => navigate(`/films/${e?.url?.split("/")[e.url.split("/").length-2]}`)}
+                  onClick={() =>
+                    navigate(
+                      `/films/${
+                        e?.url?.split("/")[e.url.split("/").length - 2]
+                      }`
+                    )
+                  }
                   className="bg-white ml-4 hover:bg-gray-100 text-purple-600 font-semibold py-1 px-4 border border-purple-600 rounded shadow"
                 >
                   {e.title}
@@ -91,7 +96,13 @@ const PeopleCard = ({
               peopleStarships.map((e, i) => (
                 <button
                   key={i}
-                  onClick={() => navigate(`/starships/${e?.url?.split("/")[e.url.split("/").length-2]}`)}
+                  onClick={() =>
+                    navigate(
+                      `/starships/${
+                        e?.url?.split("/")[e.url.split("/").length - 2]
+                      }`
+                    )
+                  }
                   className="bg-white ml-4 hover:bg-gray-100 text-purple-600 font-semibold py-1 px-4 border border-purple-600 rounded shadow"
                 >
                   {e.name}
@@ -111,7 +122,13 @@ const PeopleCard = ({
               peopleVehicles.map((e, i) => (
                 <button
                   key={i}
-                  onClick={() => navigate(`/vehicles/${e?.url?.split("/")[e.url.split("/").length-2]}`)}
+                  onClick={() =>
+                    navigate(
+                      `/vehicles/${
+                        e?.url?.split("/")[e.url.split("/").length - 2]
+                      }`
+                    )
+                  }
                   className="bg-white ml-4 hover:bg-gray-100 text-purple-600 font-semibold py-1 px-4 border border-purple-600 rounded shadow"
                 >
                   {e.name}

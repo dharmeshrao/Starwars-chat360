@@ -10,3 +10,14 @@ export const getStarshipAxios = (id) => {
 export const getFilmsAxios = (id) => {
   return axios.get(`https://swapi.dev/api/films/${id}`);
 };
+
+export const getVehiclesAxios = (id) => {
+  return axios.get(`https://swapi.dev/api/vehicles/${id}`);
+};
+
+export const fetchAll = async (data) => {
+  const results = await Promise.all(
+    data.map((url) => fetch(url).then((r) => r.json()))
+  );
+  return results
+};
