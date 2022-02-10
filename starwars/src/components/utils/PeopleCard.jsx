@@ -1,5 +1,5 @@
 import { useState, useEffect, memo } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { fetchAll } from "./Axios";
 const PeopleCard = ({
   name,
@@ -18,9 +18,15 @@ const PeopleCard = ({
   const navigate = useNavigate();
   useEffect(() => {
     let mount = true;
-    fetchAll(films).then((data)=>{if(mount)setPeopleFilm(data)});
-    fetchAll(starships).then((data)=>{if(mount)setPeopleStarships(data)});
-    fetchAll(vehicles).then((data)=>{if(mount)setPeopleVehicles(data)})
+    fetchAll(films).then((data) => {
+      if (mount) setPeopleFilm(data);
+    });
+    fetchAll(starships).then((data) => {
+      if (mount) setPeopleStarships(data);
+    });
+    fetchAll(vehicles).then((data) => {
+      if (mount) setPeopleVehicles(data);
+    });
     return () => {
       mount = false;
     };
@@ -62,14 +68,13 @@ const PeopleCard = ({
         ""
       )}
       {films?.length > 0 ? (
-        <div className="bg-purple-100 bg-opacity-30 rounded-xl flex p-4 items-center">
-          <h2 className="font-semibold text-xl mr-9 text-black">Films: </h2>
-          <div className="flex flex-wrap gap-y-2">
-            {peopleFilm &&
-              peopleFilm?.length > 0 &&
-              peopleFilm.map((e, i) => (
+        peopleFilm.length > 0 ? (
+          <div className="bg-purple-100 bg-opacity-30 rounded-xl flex p-4 items-center">
+            <h2 className="font-semibold text-xl mr-9 text-black">Films: </h2>
+            <div className="flex flex-wrap gap-y-2">
+              {peopleFilm.map((e) => (
                 <button
-                  key={i}
+                  key={Math.random()}
                   onClick={() =>
                     navigate(
                       `/films/${
@@ -82,20 +87,22 @@ const PeopleCard = ({
                   {e.title}
                 </button>
               ))}
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className="bg-purple-400 shadow bg-opacity-30 animate-pulse rounded-xl flex p-6 h/8 items-center"></div>
+        )
       ) : (
         ""
       )}
       {starships?.length > 0 ? (
-        <div className="bg-purple-100 bg-opacity-30 rounded-xl flex p-4 items-center">
-          <h2 className="font-semibold text-xl text-black">Starships: </h2>
-          <div className="flex flex-wrap gap-y-2">
-            {peopleStarships &&
-              peopleStarships?.length > 0 &&
-              peopleStarships.map((e, i) => (
+        peopleStarships.length > 0 ? (
+          <div className="bg-purple-100 bg-opacity-30 rounded-xl flex p-4 items-center">
+            <h2 className="font-semibold text-xl text-black">Starships: </h2>
+            <div className="flex flex-wrap gap-y-2">
+              {peopleStarships.map((e) => (
                 <button
-                  key={i}
+                  key={Math.random()}
                   onClick={() =>
                     navigate(
                       `/starships/${
@@ -108,34 +115,38 @@ const PeopleCard = ({
                   {e.name}
                 </button>
               ))}
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className="bg-purple-400 shadow bg-opacity-30 animate-pulse rounded-xl flex p-6 h/8 items-center"></div>
+        )
       ) : (
         ""
       )}
       {vehicles?.length > 0 ? (
-        <div className="bg-purple-100 bg-opacity-30 rounded-xl flex p-4 items-center">
-          <h2 className="font-semibold text-xl mr-2 text-black">Vehicles: </h2>
-          <div className="flex flex-wrap gap-y-2">
-            {peopleVehicles &&
-              peopleVehicles?.length > 0 &&
-              peopleVehicles.map((e, i) => (
+        peopleVehicles.length > 0 ? (
+          <div className="bg-purple-100 bg-opacity-30 rounded-xl flex p-4 items-center">
+            <h2 className="font-semibold text-xl mr-2 text-black">Vehicles:</h2>
+            <div className="flex flex-wrap gap-y-2">
+              {peopleVehicles.map((e) => (
                 <button
-                  key={i}
-                  onClick={() =>
-                    navigate(
-                      `/vehicles/${
-                        e?.url?.split("/")[e.url.split("/").length - 2]
-                      }`
-                    )
-                  }
+                  key={Math.random()}
                   className="bg-white ml-4 hover:bg-gray-100 text-purple-600 font-semibold py-1 px-4 border border-purple-600 rounded shadow"
                 >
-                  {e.name}
+                  <Link
+                    to={`/vehicles/${
+                      e?.url?.split("/")[e.url.split("/").length - 2]
+                    }`}
+                  >
+                    {e.name}
+                  </Link>
                 </button>
               ))}
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className="bg-purple-400 shadow bg-opacity-30 animate-pulse rounded-xl flex p-6 h/8 items-center"></div>
+        )
       ) : (
         ""
       )}
