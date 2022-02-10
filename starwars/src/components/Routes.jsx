@@ -12,7 +12,7 @@ export const Routes = () => {
         <Route path="/" element={<PeoplePage />} />
         <Route path="/films/:id" element={<Films />} />
         <Route path="/starships/:id" element={<Starships />} />
-        <Route path="/vehicles/:id" element={<Vehicles/>}/>
+        <Route path="/vehicles/:id" element={<Vehicles />} />
         <Route path="*" element={<h1>No page found...</h1>} />
       </Main>
     </>

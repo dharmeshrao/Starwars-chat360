@@ -19,5 +19,5 @@ export const fetchAll = async (data) => {
   const results = await Promise.all(
     data.map((url) => fetch(url).then((r) => r.json()))
   );
-  return results
+  return results;
 };
