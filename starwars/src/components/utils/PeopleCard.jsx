@@ -50,7 +50,7 @@ const PeopleCard = ({
           <p className="text-black sm:text-2xl sm:font-bold">{gender || ""}</p>
         </div>
       </div>
-      {films ? (
+      {films?.length > 0 ? (
         peopleFilm.length > 0 ? (
           <div className="bg-purple-100 bg-opacity-30 rounded-xl flex p-4 items-center">
             <h2 className="font-semibold sm:text-xl mr-9 text-black">
@@ -80,7 +80,7 @@ const PeopleCard = ({
       ) : (
         ""
       )}
-      {starships ? (
+      {starships?.length > 0 ? (
         peopleStarships.length > 0 ? (
           <div className="bg-purple-100 bg-opacity-30 rounded-xl flex p-4 items-center">
             <h2 className="font-semibold sm:text-xl text-black">Starships: </h2>
@@ -108,7 +108,7 @@ const PeopleCard = ({
       ) : (
         ""
       )}
-      {vehicles ? (
+      {vehicles?.length ? (
         peopleVehicles.length > 0 ? (
           <div className="bg-purple-100 bg-opacity-30 rounded-xl flex p-4 items-center">
             <h2 className="font-semibold sm:text-xl mr-2 text-black">
