@@ -22,17 +22,20 @@ export const Films = () => {
     func(results);
   };
 
-  useEffect(async () => {
-    dispatch(addFilmLoading());
-    try {
-      const { data } = await axios.get(
-        `https://swapi.dev/api/films/${params.id}`
-      );
-      fetchAll(data.characters, setCharList);
-      dispatch(addFilmSucess(data));
-    } catch (err) {
-      dispatch(addFilmError());
+  useEffect(() => {
+    const fetchData = async ()=>{
+      dispatch(addFilmLoading());
+      try {
+        const { data } = await axios.get(
+          `https://swapi.dev/api/films/${params.id}`
+        );
+        fetchAll(data.characters, setCharList);
+        dispatch(addFilmSucess(data));
+      } catch (err) {
+        dispatch(addFilmError());
+      }
     }
+    fetchData()
   }, [params?.id, dispatch]);
   console.log(data);
   if (data?.length === 0)

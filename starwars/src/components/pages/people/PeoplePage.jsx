@@ -1,24 +1,13 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  addPeopleLoading,
-  addPeopleError,
-  addPeopleSucess,
-} from "../../../redux/people/actions";
+import {fetchData } from "../../../redux/people/actions";
 import PeopleCard from "../../utils/PeopleCard";
 import { Circles } from "react-loader-spinner";
 export const PeoplePage = () => {
   const dispatch = useDispatch();
   const { data } = useSelector((store) => store.people);
   useEffect(() => {
-    dispatch(addPeopleLoading());
-    try {
-      fetch("https://swapi.dev/api/people")
-        .then((res) => res.json())
-        .then((data) => dispatch(addPeopleSucess(data)));
-    } catch (err) {
-      dispatch(addPeopleError());
-    }
+    fetchData(dispatch)
   }, [dispatch]);
   if (data?.length === 0)
     return (
@@ -28,9 +17,12 @@ export const PeoplePage = () => {
     );
   return (
     <div className="p-6 flex flex-col gap-4">
+      <h1 className="text-center text-purple-600 font-bold text-2xl">
+        People's Page
+      </h1>
       {data &&
         data?.results?.length > 0 &&
-        data.results.map((e) => (
+        data?.results?.map((e) => (
           <PeopleCard
             key={Math.random()}
             name={e.name}

@@ -62,7 +62,7 @@ const PeopleCard = ({
       ) : (
         ""
       )}
-      {peopleFilm?.length > 0 ? (
+      {films?.length > 0 ? (
         <div className="bg-purple-100 bg-opacity-30 rounded-xl flex p-4 items-center">
           <h2 className="font-semibold text-xl mr-9 text-black">Films: </h2>
           <div className="flex flex-wrap gap-y-2">
@@ -82,7 +82,7 @@ const PeopleCard = ({
       ) : (
         ""
       )}
-      {peopleStarships?.length > 0 ? (
+      {starships?.length > 0 ? (
         <div className="bg-purple-100 bg-opacity-30 rounded-xl flex p-4 items-center">
           <h2 className="font-semibold text-xl text-black">Starships: </h2>
           <div className="flex flex-wrap gap-y-2">
@@ -102,7 +102,7 @@ const PeopleCard = ({
       ) : (
         ""
       )}
-      {peopleVehicles?.length > 0 ? (
+      {vehicles?.length > 0 ? (
         <div className="bg-purple-100 bg-opacity-30 rounded-xl flex p-4 items-center">
           <h2 className="font-semibold text-xl mr-2 text-black">Vehicles: </h2>
           <div className="flex flex-wrap gap-y-2">
