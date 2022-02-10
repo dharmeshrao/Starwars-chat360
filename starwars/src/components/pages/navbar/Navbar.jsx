@@ -6,15 +6,6 @@ export const Navbar = () => {
         <li className="mx-7  cursor-pointer">
           <Link to="/">Home</Link>
         </li>
-        <li className="mx-7  cursor-pointer">
-          <Link to="/about">About Us</Link>
-        </li>
-        <li className="mx-7  cursor-pointer">
-          <Link to="/contact">Contact</Link>
-        </li>
-        <li className="mx-7  cursor-pointer">
-          <Link to="/char">Characters</Link>
-        </li>
       </ul>
     </nav>
   );

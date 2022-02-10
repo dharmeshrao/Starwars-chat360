@@ -32,45 +32,45 @@ const PeopleCard = ({
     };
   }, [films, starships, vehicles]);
   return (
-    <div className="w-4/5 p-4 bg-white m-auto rounded-xl drop-shadow-lg flex flex-col gap-2">
+    <div className="sm:w-4/5 w-full p-4 bg-white m-auto rounded-xl drop-shadow-lg flex flex-col gap-2">
       <div className="flex justify-around text-center p-4 bg-purple-100 bg-opacity-40 rounded-xl">
         <div className="w-1/3">
-          <h4 className="text-purple-600 font-semibold text-lg">Name</h4>
-          <p className="text-black text-2xl font-bold">{name || ""}</p>
+          <h4 className="text-purple-600 sm:font-semibold text-sm sm:text-lg">Name</h4>
+          <p className="text-black sm:text-2xl sm:font-bold">{name || ""}</p>
         </div>
         <div className="w-1/3">
-          <h4 className="text-purple-600 font-semibold text-lg">Birth</h4>
-          <p className="text-black text-2xl font-bold">{birth || ""}</p>
+          <h4 className="text-purple-600 sm:font-semibold text-sm sm:text-lg">Birth</h4>
+          <p className="text-black sm:text-2xl sm:font-bold">{birth || ""}</p>
         </div>
         <div className="w-1/3">
-          <h4 className="text-purple-600 font-semibold text-lg">Gender</h4>
-          <p className="text-black text-2xl font-bold">{gender || ""}</p>
+          <h4 className="text-purple-600 sm:font-semibold text-sm sm:text-lg">Gender</h4>
+          <p className="text-black sm:text-2xl sm:font-bold">{gender || ""}</p>
         </div>
       </div>
       {height ? (
         <div className="flex justify-around text-center p-4 bg-purple-100 bg-opacity-40 rounded-xl">
           <div className="w-1/3">
-            <h4 className="text-purple-600 font-semibold text-lg">Height</h4>
-            <p className="text-black text-2xl font-bold">{height || ""}</p>
+            <h4 className="text-purple-600 sm:font-semibold text-sm sm:text-lg">Height</h4>
+            <p className="text-black sm:text-2xl font-bold">{height || ""}</p>
           </div>
           <div className="w-1/3">
-            <h4 className="text-purple-600 font-semibold text-lg">Mass</h4>
-            <p className="text-black text-2xl font-bold">{mass || ""}</p>
+            <h4 className="text-purple-600 sm:font-semibold text-sm sm:text-lg">Mass</h4>
+            <p className="text-black sm:text-2xl font-bold">{mass || ""}</p>
           </div>
           <div className="w-1/3">
-            <h4 className="text-purple-600 font-semibold text-lg">
+            <h4 className="text-purple-600 sm:font-semibold text-sm sm:text-lg">
               Hair Color
             </h4>
-            <p className="text-black text-2xl font-bold">{hair_color || ""}</p>
+            <p className="text-black sm:sm:text-2xl font-bold">{hair_color || ""}</p>
           </div>
         </div>
       ) : (
         ""
       )}
-      {films?.length > 0 ? (
+      {films ? (
         peopleFilm.length > 0 ? (
           <div className="bg-purple-100 bg-opacity-30 rounded-xl flex p-4 items-center">
-            <h2 className="font-semibold text-xl mr-9 text-black">Films: </h2>
+            <h2 className="font-semibold sm:text-xl mr-9 text-black">Films: </h2>
             <div className="flex flex-wrap gap-y-2">
               {peopleFilm.map((e) => (
                 <button
@@ -82,7 +82,7 @@ const PeopleCard = ({
                       }`
                     )
                   }
-                  className="bg-white ml-4 hover:bg-gray-100 text-purple-600 font-semibold py-1 px-4 border border-purple-600 rounded shadow"
+                  className="bg-white ml-4 hover:bg-gray-100 text-purple-600 text-sm font-semibold py-1 px-4 border border-purple-600 rounded shadow"
                 >
                   {e.title}
                 </button>
@@ -95,10 +95,10 @@ const PeopleCard = ({
       ) : (
         ""
       )}
-      {starships?.length > 0 ? (
+      {starships ? (
         peopleStarships.length > 0 ? (
           <div className="bg-purple-100 bg-opacity-30 rounded-xl flex p-4 items-center">
-            <h2 className="font-semibold text-xl text-black">Starships: </h2>
+            <h2 className="font-semibold sm:text-xl text-black">Starships: </h2>
             <div className="flex flex-wrap gap-y-2">
               {peopleStarships.map((e) => (
                 <button
@@ -110,8 +110,7 @@ const PeopleCard = ({
                       }`
                     )
                   }
-                  className="bg-white ml-4 hover:bg-gray-100 text-purple-600 font-semibold py-1 px-4 border border-purple-600 rounded shadow"
-                >
+                  className="bg-white ml-4 hover:bg-gray-100 text-purple-600 text-sm font-semibold py-1 px-4 border border-purple-600 rounded shadow"                >
                   {e.name}
                 </button>
               ))}
@@ -123,16 +122,15 @@ const PeopleCard = ({
       ) : (
         ""
       )}
-      {vehicles?.length > 0 ? (
+      {vehicles ? (
         peopleVehicles.length > 0 ? (
           <div className="bg-purple-100 bg-opacity-30 rounded-xl flex p-4 items-center">
-            <h2 className="font-semibold text-xl mr-2 text-black">Vehicles:</h2>
+            <h2 className="font-semibold sm:text-xl mr-2 text-black">Vehicles:</h2>
             <div className="flex flex-wrap gap-y-2">
               {peopleVehicles.map((e) => (
                 <button
                   key={Math.random()}
-                  className="bg-white ml-4 hover:bg-gray-100 text-purple-600 font-semibold py-1 px-4 border border-purple-600 rounded shadow"
-                >
+                  className="bg-white ml-4 hover:bg-gray-100 text-purple-600 text-sm font-semibold py-1 px-4 border border-purple-600 rounded shadow"                >
                   <Link
                     to={`/vehicles/${
                       e?.url?.split("/")[e.url.split("/").length - 2]
