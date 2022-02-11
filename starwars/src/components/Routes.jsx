@@ -7,6 +7,7 @@ import { Vehicles } from "./pages/vehicles/Vehicles";
 export const Routes = () => {
   return (
     <>
+    {/* All the routes are in single page should be a good way to make our code maintainable. here I have use react router version six which is latest. */}
       <Navbar />
       <Main>
         <Route path="/" element={<PeoplePage />} />

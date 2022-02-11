@@ -7,11 +7,12 @@ import { useParams } from "react-router-dom";
 export const Starships = () => {
   const params = useParams();
   const dispatch = useDispatch();
-  const { data } = useSelector((store) => store.starship);
+  const { data , loading } = useSelector((store) => store.starship);
   useEffect(() => {
     getAllStarshipData(dispatch, params?.id);
   }, [params?.id]);
-  if (data?.length === 0)
+  //Added loading here because It takes some time to fetch the data from api. 
+  if (loading)
     return (
       <div className="w-screen h-screen flex items-center justify-center">
         <Circles color="lightgray" ariaLabel="loading-indicator" />

@@ -13,10 +13,13 @@ export const Films = () => {
   const { loading, data, error } = useSelector((store) => store.film);
 
   useEffect(() => {
+
+    //here fetchFilmData will dispatch all the film to redux.
     fetchFilmData(dispatch, params?.id);
     getFilmsAxios(params?.id).then((res) =>
       fetchAll(res?.data?.characters).then((res) => setCharList(res))
     );
+    //getFilms Axios will fetch all the films and fetchAll will fetch all the characters link.
   }, [params?.id, dispatch]);
   if (loading)
     return (

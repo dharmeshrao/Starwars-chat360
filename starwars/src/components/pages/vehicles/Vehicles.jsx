@@ -6,7 +6,9 @@ export const Vehicles = () => {
   const { data } = useSelector((store) => store.vehicles);
   const params = useParams();
   const dispatch = useDispatch();
-  useEffect(async () => {
+  useEffect(() => {
+    //Whenever user visit on vehicles page I am fetching all data here and storing that data in redux. and i have give ParamsId as a dependency because if 
+    //we go back to previous page and try to open another vehicles page then it will re render again and show the new data when paramId change.
     fetchAllVehicles(dispatch, params?.id);
   }, [params?.id]);
   return (
@@ -14,7 +16,6 @@ export const Vehicles = () => {
       <h1 className="text-center text-purple-600 font-bold text-2xl">
         Vehicles Information
       </h1>
-
       <div className="sm:w-4/5 p-4 bg-white m-auto rounded-xl drop-shadow-lg flex flex-col gap-2">
         <div className="flex flex-row justify-between gap-2 bg-purple-100 bg-opacity-30 rounded-xl p-4">
           <div className="w-1/3 text-center">

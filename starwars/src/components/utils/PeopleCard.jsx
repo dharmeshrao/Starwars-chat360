@@ -1,20 +1,15 @@
 import { useState, useEffect, memo } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { fetchAll } from "./Axios";
-const PeopleCard = ({
-  name,
-  birth,
-  gender,
-  films,
-  starships,
-  vehicles,
-}) => {
+const PeopleCard = ({ name, birth, gender, films, starships, vehicles }) => {
   const [peopleFilm, setPeopleFilm] = useState([]);
   const [peopleVehicles, setPeopleVehicles] = useState([]);
   const [peopleStarships, setPeopleStarships] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
     let mount = true;
+    //React components that perform state updates and run asynchronous operations can cause memory
+    // leak issues if the state is updated after the component is unmounted. To resolve this issue I have used a flag method.
     fetchAll(films).then((data) => {
       if (mount) setPeopleFilm(data);
     });
@@ -50,6 +45,7 @@ const PeopleCard = ({
           <p className="text-black sm:text-2xl sm:font-bold">{gender || ""}</p>
         </div>
       </div>
+{/* here I am doing optional chaining method and checking if we have films array in props than I have to show all the film name In i don't have film than I have to show loading animation. */}
       {films?.length > 0 ? (
         peopleFilm.length > 0 ? (
           <div className="bg-purple-100 bg-opacity-30 rounded-xl flex p-4 items-center">
@@ -61,6 +57,7 @@ const PeopleCard = ({
                 <button
                   key={Math.random()}
                   onClick={() =>
+                    // here i have splited the url to get the film number from the end of that url.
                     navigate(
                       `/films/${
                         e?.url?.split("/")[e.url.split("/").length - 2]
